@@ -18,6 +18,11 @@ builder.Services.AddDbContext<PruebaContext>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope()) {
+    var context = scope.ServiceProvider.GetRequiredService<PruebaContext>();
+    context.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
