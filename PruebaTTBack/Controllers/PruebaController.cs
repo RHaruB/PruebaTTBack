@@ -33,11 +33,43 @@ namespace PruebaTTBack.Controllers
             var result = _usuario.SetUsuario(persona);
             return new JsonResult(result);
         }
-        [HttpPost("GetAllUsuarios")]
+        [HttpPost("DeleteUsuario")]
+        public IActionResult DeleteUsuario(PersonasVM persona)
+        {
+            var result = _usuario.DeleteUsuario(persona);
+            return new JsonResult(result);
+        }
+        [HttpPost("UpdateUsuario")]
+        public IActionResult UpdateUsuario(PersonasVM persona)
+        {
+            var result = _usuario.UpdateUsuario(persona);
+            return new JsonResult(result);
+        }
+        [HttpGet("GetAllUsuarios")]
         public IActionResult GetAllUsuarios()
         {
             var result = _usuario.GetAllUsuarios();
             return new JsonResult(result);
+        }
+        [HttpPost("GetUsuariosFiltros")]
+        public IActionResult GetUsuariosFiltros(PersonasVM persona)
+        {
+            if(persona.IdDepartamento != 0 && persona.IdCargo != 0)
+            {
+                var result = _usuario.GetAllUsuarios().Where(s=>s.IdCargo == persona.IdCargo && s.IdDepartamento == persona.IdDepartamento);
+                return new JsonResult(result);
+            }
+            else if (persona.IdDepartamento != 0 )
+            {
+                var result = _usuario.GetAllUsuarios().Where(s =>  s.IdDepartamento == persona.IdDepartamento);
+                return new JsonResult(result);
+            }
+            else 
+            {
+                var result = _usuario.GetAllUsuarios().Where(s => s.IdCargo == persona.IdCargo );
+                return new JsonResult(result);
+            }
+
         }
     }
 }

@@ -9,5 +9,7 @@ namespace PruebaTTBack.Service
         public List<PersonasVM> GetAllUsuarios();
 
         public ResponseVM SetUsuario(PersonasVM personasVM);
+        public ResponseVM DeleteUsuario(PersonasVM personasVM);
+        public ResponseVM UpdateUsuario(PersonasVM personasVM);
     }
 }
