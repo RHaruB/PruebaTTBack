@@ -16,5 +16,7 @@ namespace DataBase
         public  string segundoApellido { set; get; }
         public  int idDepartamento { set; get; }
         public  int idCargo { set; get; }
+        public  bool estado { set; get; }
+        public  string Correo { set; get; }
     }
 }

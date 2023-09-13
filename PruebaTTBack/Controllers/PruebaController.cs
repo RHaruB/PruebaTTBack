@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PruebaTTBack.Service;
+using PruebaTTBack.ViewModels;
 
 namespace PruebaTTBack.Controllers
 {
@@ -24,6 +25,18 @@ namespace PruebaTTBack.Controllers
         public IActionResult GetAllDepartamentos()
         {
             var result = _usuario.GetAllDepartamentos();
+            return new JsonResult(result);
+        }
+        [HttpPost("SetUsuario")]
+        public IActionResult SetUsuario(PersonasVM persona)
+        {
+            var result = _usuario.SetUsuario(persona);
+            return new JsonResult(result);
+        }
+        [HttpPost("GetAllUsuarios")]
+        public IActionResult GetAllUsuarios()
+        {
+            var result = _usuario.GetAllUsuarios();
             return new JsonResult(result);
         }
     }
